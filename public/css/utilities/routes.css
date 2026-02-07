@@ -269,8 +269,27 @@
             }
         }
     }
+}
 
-    /* Responsive Layout - Desktop */
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.filter-region {
+    justify-self: start;
+}
+.filter-season {
+    justify-self: end;
+}
+.filter-clear {
+    justify-self: center;
+}
+
+/* Responsive Layout - Desktop */
+.routes-grid {
     @media (min-width: 1024px) {
         gap: var(--space-xl);
         
@@ -302,3 +321,4 @@
         }
     }
 }
+

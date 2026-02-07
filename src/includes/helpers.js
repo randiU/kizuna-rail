@@ -26,4 +26,13 @@ const yenToUsd = (yen) => {
     return yen * exchangeRate;
 };
 
-export { generateConfirmationCode, kmToMiles, yenToUsd };
+const monthsToAbbr = (month) => {
+    const abbr = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    //checks to see if the month parameter is an array, if it is it will return an array of abbreviations, if not it will return a single abbreviation
+    if (Array.isArray(month)) {
+        return month.map(num => abbr[num - 1]);
+    }
+    return abbr[month - 1];
+};
+
+export { generateConfirmationCode, kmToMiles, yenToUsd, monthsToAbbr};

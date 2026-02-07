@@ -405,15 +405,35 @@ article.confirmation-page {
     }
 }
 
+/* Print Styles - I had chatgpt develop the specific print styles */
 @media print {
-    article.confirmation-page {
-        .confirmation-actions {
-            display: none;
-        }
+    /* Hide navigation, buttons, and footer */
+    nav,
+    .btn,
+    .print-button,
+    footer,
+    .site-header,
+    .site-footer {
+        display: none !important;
+    }
 
-        .confirmation-header {
-            background-color: white;
-            border: 2px solid var(--clr-primary);
-        }
+    /* Remove background colors and box shadows for clean print */
+    body,
+    .confirmation-content {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+    }
+
+    /* Remove unnecessary margins/padding to fit on one page */
+    body,
+    .confirmation-content {
+        margin: 0 !important;
+        padding: 0.5in !important;
+    }
+
+    /* Prevent awkward page breaks */
+    .confirmation-content {
+        page-break-inside: avoid;
     }
 }

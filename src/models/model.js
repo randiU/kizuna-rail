@@ -1,5 +1,7 @@
 import { generateConfirmationCode } from '../includes/helpers.js';
 import { getDb as db } from './db-in-file.js';
+import { monthsToAbbr } from '../includes/helpers.js';
+import { yenToUsd } from '../includes/helpers.js';
 
 // ROUTE MODEL FUNCTIONS
 
@@ -17,8 +19,14 @@ export const getListOfSeasons = async () => {
     return Array.from(seasons);
 };
 
+//Updated getRouteById to match numbers that represent months to month abbreviation that will get passed into details.js
 export const getRouteById = async (routeId) => {
-    return db().routes.find(route => route.id == routeId) || null;
+    const route = db().routes.find(route => route.id == routeId) || null;
+    //checks that a route was found and that it has operatingMonths before trying to convert them to abbreviations
+    if (route && route.operatingMonths) {
+        route.operatingMonthsAbbr = monthsToAbbr(route.operatingMonths);
+    }
+    return route;
 };
 
 export const getRoutesByRegion = async (region) => {
@@ -166,13 +174,17 @@ export const getTicketOptionsForRoute = async (routeId) => {
     const route = await getRouteById(routeId);
     if (!route) return null;
 
-    return db().ticketClasses.map(tc => ({
-        class: tc.class,
-        name: tc.name,
-        price: route.distance * tc.pricePerKm,
-        amenities: tc.amenities,
-        description: tc.description
-    }));
+    return db().ticketClasses.map(tc => {
+        const priceYen = route.distance * tc.pricePerKm;
+        return {
+            class: tc.class,
+            name: tc.name,
+            priceYen,
+            priceUsd: yenToUsd(priceYen),
+            amenities: tc.amenities,
+            description: tc.description
+        };
+    });
 };
 
 export const getTicketOptionsForSchedule = async (scheduleId) => {

@@ -5,7 +5,7 @@
         <div class="route-header-content">
             <h1 class="route-name"><%= details.name %></h1>
             <p class="route-description"><%= details.description %></p>
-            
+
             <% if (details.highlights && details.highlights.length > 0) { %>
             <div class="highlights">
                 <% details.highlights.forEach(function(highlight) { %>
@@ -14,7 +14,7 @@
             </div>
             <% } %>
         </div>
-        
+
         <% if (details.imageUrl) { %>
         <div class="route-image">
             <img src="<%= details.imageUrl %>" alt="<%= details.name %>">
@@ -26,22 +26,24 @@
         <div class="info-grid">
             <div class="info-item">
                 <span class="info-label">Region</span>
-                <span class="info-value region-<%= details.region %>"><%= details.region.charAt(0).toUpperCase() + details.region.slice(1) %></span>
+                <span
+                    class="info-value region-<%= details.region %>"><%= details.region.charAt(0).toUpperCase() + details.region.slice(1) %></span>
             </div>
-            
+
             <div class="info-item">
                 <span class="info-label">Duration</span>
                 <span class="info-value"><%= details.duration %></span>
             </div>
-            
+
             <div class="info-item">
                 <span class="info-label">Distance</span>
                 <span class="info-value"><%= details.distance %> km</span>
             </div>
-            
+
             <div class="info-item">
                 <span class="info-label">Best Season</span>
-                <span class="info-value season-<%= details.bestSeason %>"><%= details.bestSeason.charAt(0).toUpperCase() + details.bestSeason.slice(1) %></span>
+                <span
+                    class="info-value season-<%= details.bestSeason %>"><%= details.bestSeason.charAt(0).toUpperCase() + details.bestSeason.slice(1) %></span>
             </div>
         </div>
 
@@ -50,11 +52,13 @@
             <div class="stations">
                 <div class="station">
                     <span class="station-label">Start</span>
-                    <span class="station-name"><%= details.startStation.charAt(0).toUpperCase() + details.startStation.slice(1) %></span>
+                    <span
+                        class="station-name"><%= details.startStation.charAt(0).toUpperCase() + details.startStation.slice(1) %></span>
                 </div>
                 <div class="station">
                     <span class="station-label">End</span>
-                    <span class="station-name"><%= details.endStation.charAt(0).toUpperCase() + details.endStation.slice(1) %></span>
+                    <span
+                        class="station-name"><%= details.endStation.charAt(0).toUpperCase() + details.endStation.slice(1) %></span>
                 </div>
             </div>
         </div>
@@ -62,7 +66,7 @@
         <div class="route-operating">
             <h2>Operating Schedule</h2>
             <div class="months-grid">
-                <% details.operatingMonths.forEach(function(month) { %>
+                <% details.operatingMonthsAbbr.forEach(function(month) { %>
                 <span class="month-badge"><%= month %></span>
                 <% }); %>
             </div>
