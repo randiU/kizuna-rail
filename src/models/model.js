@@ -170,6 +170,7 @@ export const calculateTicketPrice = async (routeId, className) => {
     return route.distance * ticketClass.pricePerKm;
 };
 
+//Added the USD price to the ticket options that get passed into book.js. This allows us to display the price in USD on the booking page without having to do the conversion in the EJS template.
 export const getTicketOptionsForRoute = async (routeId) => {
     const route = await getRouteById(routeId);
     if (!route) return null;
